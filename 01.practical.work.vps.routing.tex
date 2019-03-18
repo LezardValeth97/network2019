@@ -1,0 +1,50 @@
+\documentclass{report}
+\title{Practical Work 1}
+\author{Kieu Quoc Viet}
+\begin{document}
+\maketitle
+
+
+\begin{section}{Pinging usth.edu.vn}
+\begin{verbatim}
+lezardvaleth@valeth:~$ ping usth.edu.vn
+PING usth.edu.vn (104.27.161.15) 56(84) bytes of data.
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=1 ttl=56 time=106 ms
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=2 ttl=56 time=76.7 ms
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=3 ttl=56 time=164 ms
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=4 ttl=56 time=350 ms
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=5 ttl=56 time=344 ms
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=6 ttl=56 time=526 ms
+64 bytes from 104.27.161.15 (104.27.161.15): icmp_seq=7 ttl=56 time=60.0 ms
+^C
+--- usth.edu.vn ping statistics ---
+8 packets transmitted, 7 received, 12% packet loss, time 7027ms
+rtt min/avg/max/mdev = 60.066/232.837/526.965/163.710 ms
+    
+\end{verbatim}
+\end{section}
+
+\begin{section}{Traceroute from laptop to usth.edu.vn}
+There are 15 hops from the laptop to usth.edu.vn
+\begin{verbatim}
+lezardvaleth@valeth:~$ traceroute usth.edu.vn
+traceroute to usth.edu.vn (104.27.161.15), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.10.10)  55.878 ms  55.815 ms  61.289 ms
+ 2  ci96.120-46.netnam.vn (101.96.120.46)  67.915 ms  67.897 ms  67.876 ms
+ 3  static.netnam.vn (119.17.219.78)  67.858 ms static.netnam.vn (119.17.219.74)  67.845 ms static.netnam.vn (119.17.219.78)  67.832 ms
+ 4  static.netnam.vn (119.17.219.17)  168.748 ms static.netnam.vn (119.17.219.13)  189.859 ms static.netnam.vn (119.17.219.17)  255.654 ms
+ 5  static.netnam.vn (119.17.219.14)  295.888 ms  308.041 ms static.netnam.vn (119.17.219.10)  310.359 ms
+ 6  static.netnam.vn (119.17.219.17)  310.314 ms localhost (27.68.229.49)  104.443 ms  150.917 ms
+ 7  203.113.156.25 (203.113.156.25)  19.924 ms localhost (27.68.240.8)  36.231 ms 203.113.156.25 (203.113.156.25)  19.847 ms
+ 8  localhost (27.68.229.49)  40.840 ms  40.847 ms  40.814 ms
+ 9  localhost (27.68.240.8)  44.398 ms ae-12.r03.tkokhk01.hk.bb.gin.ntt.net (129.250.5.254)  214.393 ms localhost (27.68.240.8)  48.391 ms
+10  203.131.248.245 (203.131.248.245)  48.385 ms  61.758 ms ae-11.r24.tkokhk01.hk.bb.gin.ntt.net (129.250.6.99)  214.269 ms
+11  ae-12.r03.tkokhk01.hk.bb.gin.ntt.net (129.250.5.254)  229.157 ms * ae-6.r20.sngpsi07.sg.bb.gin.ntt.net (129.250.7.66)  230.659 ms
+12  ae-1.r01.sngpsi07.sg.bb.gin.ntt.net (129.250.3.100)  230.625 ms ae-11.r24.tkokhk01.hk.bb.gin.ntt.net (129.250.6.99)  227.218 ms ae-1.r01.sngpsi07.sg.bb.gin.ntt.net (129.250.3.100)  227.210 ms
+13  ae-6.r20.sngpsi07.sg.bb.gin.ntt.net (129.250.7.66)  250.679 ms 116.51.31.126 (116.51.31.126)  116.410 ms ae-6.r20.sngpsi07.sg.bb.gin.ntt.net (129.250.7.66)  275.796 ms
+14  * ae-1.r01.sngpsi07.sg.bb.gin.ntt.net (129.250.3.100)  275.762 ms *
+15  104.27.161.15 (104.27.161.15)  226.984 ms  226.968 ms  154.627 ms
+
+\end{verbatim}
+\end{section}
+\end{document}

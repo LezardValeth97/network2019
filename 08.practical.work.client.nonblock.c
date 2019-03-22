@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 
 
+
 int main(int argc, char **argv)
 {
 	struct sockaddr_in saddr;
@@ -18,7 +19,6 @@ int main(int argc, char **argv)
 
 	char hostname[256];
 	char s[100];
-	char t[100];	
 	if(argc == 1){
 		printf("Enter a hostname: ");
 		scanf("%s", hostname);		
@@ -54,11 +54,6 @@ int main(int argc, char **argv)
 	struct in_addr ip = *IP[0];
 	printf("%s\n", inet_ntoa(ip));
 
-/*
-	for(int i=0; IP[i] != NULL; i++){
-		printf("%s\n", inet_ntoa(*IP[i])); // to convert the hostname into IP address and show the resolved IP address
-	}
-*/
 	saddr.sin_port = htons(port);
 
 	if(connect(sockfd, (struct sockaddr *) &saddr, sizeof(saddr)) < 0) {
@@ -66,47 +61,32 @@ int main(int argc, char **argv)
 		close(sockfd);
 		return -1;
 	}
-	else{
-		printf("Connected successfully \n");
-	}
+	
+	printf("Connected successfully \n");
+	
+
+/*
+	setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &(int){1}, sizeof(int));
+	int fl = fcntl(sockfd, F_GETFL, 0);
+	fl |= O_NONBLOCK;
+	fcntl(sockfd, F_SETFL, fl);
+*/
 
 	while (1) {
 		memset(s, 0, sizeof(s));
+		printf("Client: ");
 
-		while(1){
-			recv(sockfd, t, sizeof(t), 0);
-			strcat(s, t);
-			memset(t, 0, sizeof(t));
-			if(s[strlen(s)] == '\0') 
-				break;
-		}
-
-		printf("Server says: %s\n", s);	
-<<<<<<< HEAD
-		//read(sockfd, s, sizeof(s));
-=======
->>>>>>> 4df7d66b5fc5502fc0f91e20a7314d6d0285213f
-
-		memset(s, 0, sizeof(s));
-		printf("Client>: ");
-
-		if(fgets(s,sizeof(s), stdin) == NULL){
+		if(fgets(s, sizeof(s), stdin) == NULL){
 			return -1;
 		}
 
 		if(strcmp(s, "/quit\n") == 0){
 			shutdown(sockfd, SHUT_RDWR);
 			close(sockfd);
-			printf("Exit! \n");
 			break;
-		}		
-<<<<<<< HEAD
-		
-=======
+		}
 
->>>>>>> 4df7d66b5fc5502fc0f91e20a7314d6d0285213f
-		send(sockfd, s, strlen(s), 0);
-
+		send(sockfd, s, strlen(s)+1, 0);
 	}
 	return 0;
 }
